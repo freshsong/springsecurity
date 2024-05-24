@@ -1,54 +1,167 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버에디터 테스트</title>
+    <link rel="stylesheet" href="res/css/bootstrap.min.css">
+    <link rel="stylesheet" href="res/css/admin.css">
 </head>
 <body>
+
+    <div class="main" id="post">
+        <div class="container-fluid">
+            <div class="row">
+
     <form name="myform" onsubmit="return chkSubmit();">
-<div>
-    <textarea name="content" id="demo" cols="100" rows="10">
-        네이버에서 만든 에디터를 테스트 해봅니다.
-    </textarea>
-</div>
-<div><button type="submit">전송</button></div>
+       <div class="my-4 fw-bold">
+          <label>제목</label>
+          <input type="text" name="title" id="title" class="form-control">
+       </div> 
+       <!--
+       <div class="my-4 row">
+          <div class="col-md-6">
+             <label class="fw-bold">이름</label>
+             <input type="text" name="write" class="form-control">
+          </div>
+          <div class="col-md-6">
+             <label class="fw-bold">비밀번호</label>
+             <input type="password" name="password" class="form-control">
+          </div>
+       </div>
+       -->
+       <div class="my-4 fw-bold">
+          <label>내용</label>
+          <textarea name="content" 
+                    id="posts" 
+                    rows="15" 
+                    cols="120"
+                    style="width:933px;"></textarea>
+       </div>
+
+       <!--
+       <div class="my-4 fw-bold">
+          <label>YOUTUBE 주소</label>
+          <input type="text" name="youtube" id="youtube" class="form-control">        
+       </div>
+       -->
+       <div id="drop-area">
+          드래그앤드롭 또는 &nbsp;&nbsp;
+          <input type="file" id="file-input" name="files" multiple />
+          <button type="button" class="btn btn-secondary" 
+                                id="file-input-click"
+                                onclick="document.getElementById('file-input').click();">선택</button>
+       </div>
+       <ul class="list-group" id="file-preview">
+        <!--
+          <li class="list-group-item">
+             <div class="col-2">
+                <img src="res/images/dance01.jpg" class="img-thumbnail">
+             </div>
+             <div class="col-8">
+                이미지.jpg
+             </div>
+             <div class="col-2">
+                <button type="button" class="btn btn-danger">취소</button>
+             </div>
+          </li>
+        -->  
+       </ul>
+       <div><button type="submit">전송</button></div>
     </form>
+ 
+    </div>
+  </div>
+</div>    
+
+<script src="res/js/jquery.min.js"></script>
 <script src="res/editor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script>
+
+$(function(){
+   const dropArea = $("#drop-area");
+
+   //드래그 할경우 생기는 onload, onsubmit 등 다른 이벤트 방지
+   $(document).on('dragenter dragover dragleave drop', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+   });
+
+   //#drop-area 영역 이벤트 (드래그앤드롭으로 선택할 경우)
+   dropArea.on("drop", function(e){
+      const files = e.originalEvent.dataTransfer.files;
+      handleFiles(files);
+   });
+
+    //file-input (버튼 클릭으로 선택할 경우)
+    $("#file-input").on("change", function(){
+        const files = this.files;
+        handleFiles(files);
+    });
+
+   $(document).on("click", ".rmbtn", function(){
+      const file = $(this).data("name");
+      $(this).parents('.list-group-item').remove();
+      removeFromInput(file);
+   });
+});
+
+   function handleFiles(files) {
+       for(let i = 0; i < files.length; i++) {
+         const file = files[i];
+         
+         //파일이름
+         const fileName = "<div class='col-8'>"+file.name+"</div>";
+         //삭제버튼
+         const rmBtn = "<div class='col-2'>" + 
+                       "<button type='button' data-name='"+file+"' class='btn btn-danger rmbtn'>취소</button>" +
+                       "</div>";
+         let imgView = "";
+         if(file.type.startsWith('image/')) {
+            const img = "<img src='"+URL.createObjectURL(file)+"' class='img-thumbnail'>";
+            imgView = img;
+            console.log(imgView);
+         }  
+         const fdiv = "<div class='col-2'>" + imgView + "</div>";
+         $("#file-preview").append("<li class='list-group-item'>"+fdiv + fileName + rmBtn + "</li>");
+       }
+   }
+
+
+
     var oEditors = [];
 
     nhn.husky.EZCreator.createInIFrame({
         oAppRef: oEditors,
-        elPlaceHolder: "demo",
+        elPlaceHolder: "posts",
         sSkinURI: "res/editor/SmartEditor2Skin.html",
         fCreator: "createSEditor2",
         fOnAppLoad : function(){
-            oEditors.getById['demo'].setDefaultFont("나눔고딕", 12);
+            oEditors.getById['posts'].setDefaultFont( "나눔고딕", 12);   
         }
-
     });
 
     function chkSubmit(elClickedObj){
 
         //에디터 내용이 textarea에 적용
-        oEditors.getById["demo"].exec("UPDATE_CONTENTS_FIELD", []);
-
+        oEditors.getById["posts"].exec("UPDATE_CONTENTS_FIELD", []);
+        
         //여기서 검증
-        if(document.getElementById("demo").value == "<p><br></p>"){
-            alert("내용을 입력하세요");
-            document.getElementById("demo").value = "";
+        if(document.getElementById("posts").value == "<p><br></p>"){
+            alert("내용을 입력하세요.");
+            document.getElementById("posts").value = "";
             return false;
-        }else{
-            console.log(document.getElementById("demo").value);
+        }else{    
+            console.log(document.getElementById("posts").value);
             return false;
-        }        
+        }  
+ /*
+try {
+     elClickedObj.form.submit();
+ } catch(e) {}
+ */
     }
-    /*
-    try{
-        eClickedObj.form.submit();
-    }catch(e){}
-    */
-</script>
+
+</script>    
 </body>
 </html>
