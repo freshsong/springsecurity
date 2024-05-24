@@ -8,23 +8,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/member")
 public class MemberController {
 
-	//home
+	//�α���������
 	@GetMapping("/home")
 	public String home() {
-		System.out.println("member/home 실행");
+		System.out.println("member/home ����");
 		return "home";
 	}
 	
 	@GetMapping("/gallery")
 	public String gallery() {
-		System.out.println("member/gallery 실행");
+		System.out.println("member/gallery ����");
 		return "gallery";
 	}
 	
 	@GetMapping("/bye")
 	public String bye() {
-		System.out.println("member/bye 실행");
+		System.out.println("member/bye ����");
 		return "bye";
 	}
-	
 }

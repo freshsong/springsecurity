@@ -6,19 +6,23 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		//myappconfig에서 만든애들 갖고와서 세팅
-		Class[] configFiles = {MyAppConfig.class}; //배열타입
+
+        Class[] configFiles = {MyAppConfig.class};  
+		
 		return configFiles;
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		String[] mappings = {"/"};		
+		
+		String[] mappings = {"/"};
+		
 		return mappings;
 	}
 
