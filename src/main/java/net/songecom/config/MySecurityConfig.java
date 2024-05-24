@@ -58,7 +58,9 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 		 .antMatchers("/member/**").authenticated() //멤버폴더는 인증해야(/member는 멤버폴더만, /member/**멤버폴더내 하위폴더)
 		 .anyRequest().permitAll() //통으로세팅가능
 		 .and()
-		 .formLogin()
+		 .formLogin().loginPage("/clogin").loginProcessingUrl("/process-login")
+		 .and()
+		 .httpBasic()
 		 .and()
 		 .logout();
 	}

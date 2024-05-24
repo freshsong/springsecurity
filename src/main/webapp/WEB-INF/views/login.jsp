@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -22,18 +24,21 @@
    <body id="login">
 
 <div class="container mt-5">
-<div class="row d-flex justify-content-center">
+	<div class="row d-flex justify-content-center">
         <div class="col-md-6">
             <div class="card px-5 py-5" id="form1">
-                <div class="form-data" v-if="!submitted">
-                    <div class="forms-inputs mb-4"> <span>Email or username</span> <input autocomplete="off" type="text" v-model="email" v-bind:class="{'form-control':true, 'is-invalid' : !validEmail(email) && emailBlured}" v-on:blur="emailBlured = true">
-                        <div class="invalid-feedback">A valid email is required!</div>
+                <form:form class="form-data" action="process-login" method="post">
+                    <div class="forms-inputs mb-4"> <span>Email or username</span>
+                        <input type="text" name="username">
                     </div>
-                    <div class="forms-inputs mb-4"> <span>Password</span> <input autocomplete="off" type="password" v-model="password" v-bind:class="{'form-control':true, 'is-invalid' : !validPassword(password) && passwordBlured}" v-on:blur="passwordBlured = true">
-                        <div class="invalid-feedback">Password must be 8 character!</div>
+                    <div class="forms-inputs mb-4"> <span>Password</span>
+                         <input type="password" name="password">
                     </div>
-                    <div class="mb-3"> <button v-on:click.stop.prevent="submit" class="btn btn-dark w-100">Login</button> </div>
-                </div>
+                    <div class="mb-3">
+                      <button type="submit" class="btn btn-dark w-100" value="login">Login</button> 
+                    </div>
+                    <!-- <input name="_csrf" type="hidden" value="f351f14c-5106-4725-8fcc-efc1d4200c1b" /> 패스워드매번달라짐 - 태그라이브러리 붙여야함-->
+                </form:form>
             </div>
         </div>
      </div>
