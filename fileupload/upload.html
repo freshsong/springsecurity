@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>file Upload</title>
+  <style>
+     .uploadform label{
+        display:block;
+        width:80px;
+        height:40px;
+        border:1px solid #ddd;
+        background:#ededed;
+        text-align:center;
+        line-height:40px;
+     }
+     .uploadform label:active{
+         background:#ddd;
+     }
+     .upload{
+        display:none;
+     }
+     .btn{
+        margin-top:30px;
+     }
+     .file-container{
+        padding:10px;
+        border:1px solid #ddd;
+     }
+     .file-container>div{
+        width:100%;
+        height:100px;
+        border:1px solid #999;
+        margin:15px;
+        border-radius:3px;
+        overflow:hidden;
+     }
+     .file-container img{
+        width:80px;
+        height:100px;
+        object-fit: cover;
+     }
+  </style>
+</head>
+<body>
+  <form method="post" class="uploadform" enctype="multipart/form-data">
+      <label for="upload">업로드</label>
+      <input type="file" 
+             name="upload" 
+             accept="*" 
+             class="upload" 
+             id="upload"
+             onchange="setThumb(event);"
+             multiple>
+       <div id="file-container"></div>      
+      <button type="submit" class="btn">업로드</button>
+  </form>
+  <script>
+     function setThumb(event){
+       for(var file of event.target.files){
+          var reader = new FileReader();  //바이너리 담을 컨테이너 객체 생성
+          console.log(file);
+          if(file.type.startsWith('image/')){
+                reader.onload = function(event) {
+                    const imgDiv = document.createElement("div");
+                    const img = document.createElement("img");
+                    img.setAttribute("src", event.target.result);
+
+                    //이미지 이름 출력
+                    var imgName = document.createElement("span");
+                    imgName.textContent = file.name; //파일이름을 span에 넣음
+                    //파일크기 출력
+                    var imgSize = document.createElement("span");
+                    imgSize.textContent = file.size + "byte";
+
+                    const delBtn = document.createElement("button");
+                          delBtn.textContent = "취소";
+                          delBtn.className = "del-btn";
+                          delBtn.onclick = function(){
+                            imgDiv.remove();
+                          }
+
+                    imgDiv.appendChild(img);
+                    imgDiv.appendChild(imgName);
+                    imgDiv.appendChild(imgSize);
+                    imgDiv.appendChild(delBtn);
+                    const fileContainer = document.getElementById("file-container");
+                    fileContainer.classList.add("file-container");
+                    fileContainer.appendChild(imgDiv);
+                        
+                }
+                reader.readAsDataURL(file);
+            
+            }else{
+                const fileDiv = document.createElement("div");
+                const fileName = document.createElement("span");
+                fileName.textContent = file.name;
+                fileName.className = "file-name";
+                const fileSize = document.createElement("span");
+                fileSize.textContent = file.size + "byte";
+                
+                const delBtn = document.createElement("button");
+                      delBtn.textContent = "취소";
+                      delBtn.className = "del-btn";
+                      delBtn.onclick = function(){
+                            fileDiv.remove();
+                          }
+
+                fileDiv.appendChild(fileName);
+                fileDiv.appendChild(fileSize);
+                fileDiv.appendChild(delBtn);
+
+                const fileContainer = document.getElementById("file-container");
+                fileContainer.classList.add("file-container");
+                fileContainer.appendChild(fileDiv);
+            }
+       } 
+     }
+  </script>
+</body>
+</html>
