@@ -4,7 +4,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="ko">
-
    <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -25,10 +24,17 @@
 
 <div class="container mt-5">
 	<div class="row d-flex justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-5">
+	        <c:if test="${param.error != null }">
+		       	 <span class="text-danger">아이디, 또는 패스워드가 잘못됐습니다.</span>
+	        </c:if>
+	        <c:if test="${param.logout != null }">
+		       		<span class="text-success">로그아웃 되었습니다.</span>
+	        </c:if>
+	       
             <div class="card px-5 py-5" id="form1">
-                <form:form class="form-data" action="process-login" method="post">
-                    <div class="forms-inputs mb-4"> <span>Email or username</span>
+                <form:form class="form-data" action="member/gallery" method="post">
+                    <div class="forms-inputs mb-4"> <span>username</span>
                         <input type="text" name="username">
                     </div>
                     <div class="forms-inputs mb-4"> <span>Password</span>

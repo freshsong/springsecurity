@@ -58,10 +58,16 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 		 .antMatchers("/member/**").authenticated() //멤버폴더는 인증해야(/member는 멤버폴더만, /member/**멤버폴더내 하위폴더)
 		 .anyRequest().permitAll() //통으로세팅가능
 		 .and()
-		 .formLogin().loginPage("/clogin").loginProcessingUrl("/process-login")
+		 .formLogin().loginPage("/clogin").loginProcessingUrl("member/gallery")
 		 .and()
 		 .httpBasic()
 		 .and()
 		 .logout();
+		/*
+		 .logoutUrl("/member/bye")  //여기서 로그아웃하겠다. 로그아웃을 수행할 URL을 지정할 때 사용
+		 .logoutSuccessUrl("/bye?logout") //로그아웃 성공시. 로그아웃 성공하면 리다이렉션되는 URL
+		 .deleteCookies("JSESSIONID") //옵션설정, 삭제할 쿠키이름
+		 .invalidateHttpSession(true); //기존 세션 무효화
+		 */
 	}
 }

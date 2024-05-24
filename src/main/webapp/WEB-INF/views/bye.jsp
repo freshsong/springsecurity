@@ -10,10 +10,11 @@
 		안녕히가세요
 	</h1>
 </c:if>
-<div class="col-4 m-auto">
-	<form:form action="logout" method="post">
-		<input type="submit" class="btn btn-dark w-100" value="logout" />
-	</form:form>
-</div>
+	<div class="col-4 m-auto">
+		<form:form action="/mysecurity/logout" method="post">
+		<h1>로그아웃 하시겠습니까</h1>
+			<input type="submit" class="btn btn-dark w-100" value="logout" />
+		</form:form>
+	</div>
 </div>
 <%@ include file="include/footer.jsp" %>
