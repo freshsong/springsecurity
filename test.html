@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+</head>
+<body>
+    <form name="myform" onsubmit="return chkSubmit();">
+<div>
+    <textarea name="content" id="demo" cols="100" rows="10">
+        네이버에서 만든 에디터를 테스트 해봅니다.
+    </textarea>
+</div>
+<div><button type="submit">전송</button></div>
+    </form>
+<script src="res/editor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<script>
+    var oEditors = [];
+
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "demo",
+        sSkinURI: "res/editor/SmartEditor2Skin.html",
+        fCreator: "createSEditor2",
+        fOnAppLoad : function(){
+            oEditors.getById['demo'].setDefaultFont("나눔고딕", 12);
+        }
+
+    });
+
+    function chkSubmit(elClickedObj){
+
+        //에디터 내용이 textarea에 적용
+        oEditors.getById["demo"].exec("UPDATE_CONTENTS_FIELD", []);
+
+        //여기서 검증
+        if(document.getElementById("demo").value == "<p><br></p>"){
+            alert("내용을 입력하세요");
+            document.getElementById("demo").value = "";
+            return false;
+        }else{
+            console.log(document.getElementById("demo").value);
+            return false;
+        }        
+    }
+    /*
+    try{
+        eClickedObj.form.submit();
+    }catch(e){}
+    */
+</script>
+</body>
+</html>

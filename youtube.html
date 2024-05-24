@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my blog</title>
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--fontawsome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+     <!--font-->
+     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+     <!--remixicon cdn-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+    <!--css-->
+    <link rel="stylesheet" href="res/css/style.css" />
+   
+    <!--favicon은 가장 아래에 있는게 좋음-->
+    <link rel="icon" href="res/images/favicon_io (1)/favicon-16x16.png" size="any">
+    <!--jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--script-->
+    <script src="res/js/script.js"></script>  
+</head>
+<body>
+    <!--왼쪽-->
+    <header>
+       <div class="logo">
+        <a href="#"><img src="res/images/logo.png" alt="logo"></a>
+       </div>
+       <div class="signin text-center">
+         <h3 class="mb-3">LOGIN</h3>
+         <form>
+            <div class="mb-3">
+                <input type="text" 
+                       name="username" 
+                       class="form-control" 
+                       placeholder="username"/>
+            </div>
+            <div class="mb-3">
+                <input type="password" 
+                       name="password" 
+                       class="form-control" 
+                       placeholder="password"/>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-outline-warning">LOGIN</button>
+            </div>
+         </form>
+       </div>
+        <nav>
+            <ul class="main-nav mt-5">
+                <li><a href="about.html">about me</a></li>
+                <li><a href="gallery.html">my gallery</a></li>
+                <li><a href="https://github.com/freshsong">my project</a></li> <!--github링크 -->
+                <li><a href="youtube.html">youtube link</a></li>
+                <li><a href="contact.html">contact me</a></li>
+            </ul>
+        </nav>
+        <div class="social">
+            <a href="#" class="instagram"><i class="ri-instagram-line"></i></a>
+            <a href="#" class="youtube"><i class="ri-youtube-line"></i></a>
+            <a href="#" class="kakaotalk"><i class="ri-kakao-talk-line"></i></a>
+            <a href="#" class="facebook"><i class="ri-facebook-circle-line"></i></a>
+        </div>
+        <div class="copyright">
+            Copyright &copy; songe's.
+        </div>
+    </header>
+
+    <div class="wrapper">
+
+        <!-- main -->
+        <!--가운데-->
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                <h1 class="text-center mb-5">My Youtube Link</h1>
+                    <!--loop-->
+                    <div class="col-md-4 mb-4">
+                        <a href="#" data-id="GhwPPlAd9PY" class="card-youtube border d-block">  
+                            <img src="https://i1.ytimg.com/vi/GhwPPlAd9PY/hqdefault.jpg" class="img-fluid" alt="YouTube video player"/>  
+                            <h5 class="p-3">폭스클럽 봤냐?</h5>
+                        </a> 
+                    </div>
+                    <!--/loop-->
+                    <div class="col-md-4 mb-4">
+                        <a href="#" data-id="Ce7EQ3RJmAg" class="card-youtube border d-block">  
+                            <img src="https://i1.ytimg.com/vi/Ce7EQ3RJmAg/hqdefault.jpg" class="img-fluid" alt="YouTube video player"/>  
+                            <h5 class="p-3">런닝맨 꿀잼</h5>
+                        </a> 
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <a href="#" data-id="uAb2Vz8V9DQ" class="card-youtube border d-block">  
+                            <img src="https://i1.ytimg.com/vi/uAb2Vz8V9DQ/hqdefault.jpg" class="img-fluid" alt="YouTube video player"/>  
+                            <h5 class="p-3">핸드폰금지</h5>
+                        </a> 
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <a href="#" data-id="Y8HIGfIOvxI" class="card-youtube border d-block">  
+                            <img src="https://i1.ytimg.com/vi/Y8HIGfIOvxI/hqdefault.jpg" class="img-fluid" alt="YouTube video player"/>  
+                            <h5 class="p-3">조나단 소개팅</h5>
+                        </a> 
+                    </div>
+
+                   
+                </div>
+            </div>
+        </div>
+        <!-- /main -->
+
+        <!--오른쪽-->
+        <aside>
+            <h4 class="fw-bold">Latest posts</h4>
+            <div class="recent-post">
+                <a href="#" class="thumb">
+                    <div class="recent-post-box"><i class="ri-links-fill"></i></div>
+                    <img src="res/images/호주.jpg" alt="0">
+                </a>
+                <a href="#" class="post-text travel">
+                    <h6 class="fw-bold">이번 여행에서 건진 사진</h6>
+                </a>
+            </div>
+
+            <div class="recent-post">
+                <a href="#" class="thumb">
+                    <div class="recent-post-box"><i class="ri-links-fill"></i></div>
+                    <img src="res/images/호주1.jpg" alt="1">
+                </a>
+                <a href="#" class="post-text fashion">
+                    <h6 class="fw-bold">이번 여행에서 건진 사진</h6>
+                </a>
+            </div>
+
+            <div class="recent-post">
+                <a href="#" class="thumb">
+                    <div class="recent-post-box"><i class="ri-links-fill"></i></div>
+                    <img src="res/images/호주7.jpg" alt="7">
+                </a>
+                <a href="#" class="post-text sports">
+                    <h6 class="fw-bold">이번 여행에서 건진 사진</h6>
+                </a>
+            </div>
+
+            <div class="recent-post">
+                <a href="#" class="thumb">
+                    <div class="recent-post-box"><i class="ri-links-fill"></i></div>
+                    <img src="res/images/호주8.jpg" alt="8">
+                </a>
+                <a href="#" class="post-text photography">
+                    <h6 class="fw-bold">이번 여행에서 건진 사진</h6>
+                </a>
+            </div>
+
+            <!--검색-->
+            <div class="searchbox">
+                <form class="search">
+                    <input type="search" placeholder="SEARCH">
+                    <button type="submit"><i class="ri-search-line"></i></button>
+                </form>
+            </div>
+            <!--/검색-->
+            <div class="posttag">
+                <h4 class="fw-bold">Popular tags</h4>
+                <div class="d-flex flex-wrap">
+                    <a href="#">Health</a>
+                    <a href="#">Jeju</a>
+                    <a href="#">Swimming</a>
+                    <a href="#">국가대표</a>
+                    <a href="#">walking</a>
+                    <a href="#">Jumping</a>
+                    <a href="#">lake</a>
+                    <a href="#">motivation</a>
+                    <a href="#">notebook</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+     <!--youtube popup / 유튜브화면 팝업처리 -->
+     <div class="youtube-popup">
+        <div class="close"><i class="fa-solid fa-xmark"></i></div>
+        <div class="youtube-body">
+            
+        </div>
+    </div>
+
+    <!--/youtube popu / 유튜브화면 팝업처리 -->
+</body>
+</html>
