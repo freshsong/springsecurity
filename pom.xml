@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.songecom</groupId>
+  <artifactId>mysecurity</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <!-- 4. 자바버전세팅 -->
+	<properties>
+		<java-version>11</java-version>
+		<org.springframework-version>5.2.25.RELEASE</org.springframework-version>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.value>11</maven.compiler.value>
+	</properties>
+	
+  <dependencies>
+  <!-- 1. spring web mvc - 5.2.25.release 설치 -->
+  <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-webmvc</artifactId>
+	    <!-- <version>5.2.25.RELEASE</version>  위에 5.2.25.RELEASE 변수로 받아 작동되므로 바로 밑에줄처럼 ${}안에 넣어써도됨-->
+	    <version>${org.springframework-version}</version>
+	</dependency>
+  <!-- 2. servlet-api 설치 -->
+  <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>4.0.1</version>
+	    <scope>provided</scope>
+	</dependency>
+	
+	<!-- 3. junit 설치(주피터말고) -->
+	<!-- https://mvnrepository.com/artifact/junit/junit -->
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.13.2</version>
+	    <scope>test</scope>
+	</dependency>
+  </dependencies>
+	<!-- 5. configuration 세팅 
+	<configuration>
+	     <source>11</source>
+	     <target>11</target>
+    </configuration>
+    -->
+</project>
