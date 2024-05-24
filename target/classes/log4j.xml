@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="net.songecom.mysec">
+	<logger name="net.songecom.upload">
 		<level value="info" />
 	</logger>
 	

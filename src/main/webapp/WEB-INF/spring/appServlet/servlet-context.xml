@@ -13,16 +13,38 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
-
+	<resources mapping="/resources/**" location="/resources/" />	
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="net.songecom.mysec" />
+	<!-- 파일업로드를 위한 bean -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 최대 업로드 사이드 지정할 수 있음 -->
+		<beans:property name="maxUploadSize" value="1000000" />
+	</beans:bean>
 	
+	<!-- sql DB 연동을 위한 bean -->
+	<beans:bean name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	  <beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+	  <beans:property name="url" value="jdbc:mysql://localhost:3306/javaboard?useUnicode=true&amp;characterEncoding=utf-8" />
+	  <beans:property name="username" value="root" />
+	  <beans:property name="password" value="chlthgml920!!" />
+	</beans:bean>
 	
+	<!-- mybatis 연동 설정 -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="mapperLocations" value="classpath:mybatis/*-mapper.xml" />
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>		
 	
+	<!-- 템플릿으로 쓸거라 템플릿으로등록 -->
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSessionFactory" />	
+	</beans:bean>
+	
+	<context:component-scan base-package="net.songecom.upload" />
 </beans:beans>

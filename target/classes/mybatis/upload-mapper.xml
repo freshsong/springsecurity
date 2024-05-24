@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ 	<!-- dao dto 작업 후 -->
+	<mapper namespace="net.songecom.upload.dao.UploadMapper">
+	
+	<insert id="insertData" parameterType="net.songecom.upload.model.ContentsDto" 
+			useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO contents ( title ) values ( #{title} )
+		<selectKey keyProperty="contentsId" resultType="int" order="AFTER">
+			SELECT LAST_INSERT_ID() 			
+		</selectKey>
+	</insert> 
+	
+	<insert id="insertUpload" parameterType="net.songecom.upload.model.UploadDto">
+		INSERT INTO upload (contents_id, n_filename, o_filename, fileext, filesize)
+		VALUES (#{contents_id}, #{n_filename}, #{o_filename}, #{fileext}, #{filesize})
+	</insert>
+	
+	<!-- select join -->
+	<select id="getUpload" resultType="net.songecom.upload.model.UploadcontentsDto">
+		SELECT
+		 * 
+		FROM 
+			contents c
+			JOIN 
+			upload u ON 
+			c.id = u.contents_id
+	</select>
+	
+	<select id="listContents" resultType="net.songecom.upload.model.ContentsDto">
+		SELECT * FROM contents
+	</select>
+	
+	<select id="listUploadByContents" resultType="net.songecom.upload.model.UploadDto" 
+			parameterType="int">
+		SELECT * FROM upload where contents_id = #{contents_id}
+	</select>
+	
+</mapper>
