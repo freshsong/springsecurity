@@ -8,14 +8,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity(debug = true) //잘되는지확인(콘솔로확인) 완성후 debug 삭제
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	/* 그냥 넣은거라 뺌
+	
 	@Autowired
 	private PasswordEncoder bcryptPasswordEncoder;
-	*/
+	
 	@Autowired
 	private DataSource dataSource;
 	
@@ -38,7 +39,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 		auth
 			.jdbcAuthentication()
 			.dataSource(dataSource)
-			.passwordEncoder(NoOpPasswordEncoder.getInstance());
+			.passwordEncoder(bcryptPasswordEncoder);
 			
 		//아래 인코딩에 맞게 가입진행됨
 		//System.out.println("my password id crypt" + bcryptPasswordEncoder.encode("0715"));
