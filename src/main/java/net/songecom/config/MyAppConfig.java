@@ -3,6 +3,8 @@ package net.songecom.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -23,4 +25,14 @@ public class MyAppConfig {
 		
 		return viewResolver;
 	}
+	@Bean //websecurityconfig가 아닌 이 클래스에서 가져와써야함
+	PasswordEncoder getPasswordEncoder() {
+		//password는 암호화해서 넣어야함,지금은 쌩으로 넣기
+	    //return NoOpPasswordEncoder.getInstance(); 		
+		//암호화 BCrypt로 사용
+		return new BCryptPasswordEncoder();
+	}
+	
+	
+	
 }

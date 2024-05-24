@@ -34,7 +34,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./gallery">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./bye">LogOut</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./bye">byebye</a></li>
                 </ul>
             </div>
         </nav>

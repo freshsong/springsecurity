@@ -21,9 +21,10 @@ public class MemberController {
 		return "gallery";
 	}
 	
-	@GetMapping("/bye")
+	@GetMapping(value="/bye", produces="text/html;charset=UTF-8")
 	public String bye() {
 		System.out.println("member/bye 실행");
 		return "bye";
 	}
+	
 }

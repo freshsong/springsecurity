@@ -26,4 +26,11 @@ public class DefaultController {
 		System.out.println("bye()가 실행됨");
 		return "더이상 배울것이 없습니다. 이제 졸업해도 됩니다";
 	}
+	
+	@GetMapping("/clogin")
+	public String customLogin() {
+		System.out.println("member/clogin 실행");
+		return "login";
+	}
+	
 }
